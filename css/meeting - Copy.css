@@ -92,11 +92,6 @@ section {
 		background: #358822;
 	}
 
-	.feedback button.primary {
-		margin-top: 0;
-		vertical-align: middle;
-	}
-
 	button.stop {
 		background: #822;
 		background: #999;
@@ -176,8 +171,10 @@ section {
 
 	.feedback .costs {
 		margin: 1em;
+		/*background: hsl(205,50%,75%);*/
 		color: hsl(205,50%,75%);
 		color: #248;
+		/*color: rgba(0,0,0,0.5);*/
 	}
 
 	.currency {
@@ -187,59 +184,37 @@ section {
 
 	.currEuros {
 		font-size: 12rem;
+		/*color: #48c;*/
+		/*color: #333;*/
+		/*color: hsl(205,50%,75%);*/
 	}
 
 	.currCents {
-		display: inline-block;
-		margin-right: -1.5em;
 		font-size: 3.6rem;
 		color: #ccc;
 	}
 
-	.mainInfo {
-		overflow: hidden;
-	}
-
 	.metaInfo {
-		position: absolute;
-		bottom: 0;
-		border-top: 1px solid #ddd;
-		padding: 1em 0;
-		width: 100%;
-		text-align: center;
-	}
-
-	.attendeesInfo {
-		display: inline-block;
-		vertical-align: middle;
-		margin: 0 auto;
-		width: 6em;
-		border: 1px solid #ddd;
+		border-top: 1px solid #eee;
 	}
 
 		.attendeesInfo button {
 			display: inline-block;
-			border-radius: 0;
-			margin: 0;
-			padding: 0;
-			width: 1.5em;
-			height: 1.5em;
+			/*border-radius: 50%;*/
+			/*border: 1px solid #ccc;*/
+			width: 1em;
+			height: 1em;
 			font-size: 3rem;
 			vertical-align: middle;
 			color: #ccc;
-			background: transparent;
+			background: none;
 			line-height: 0;
 		}
 
-		.attendeesInfo .more {
-			border-left: 1px solid #ddd;
-		}
-
 		.currAttendees {
-			border-bottom: 1px solid #ddd;
-			font-size: 3.6rem;
-			line-height: 1.5;
+			display: inline-block;
 			color: #ccc;
+			font-size: 3.6rem;
 			vertical-align: middle;
 		}
 
@@ -247,29 +222,5 @@ section {
 			margin: 0 1em;
 			color: #ccc;
 		}
-
-	/*-- Start larger screens --*/
-	@media screen and (min-width: 40em) {
-
-		.metaInfo {
-			position: static;
-			float: right;
-			border: none;
-			border-left: 1px solid #ddd;
-			height: 100%;
-			width: auto;
-			text-align: center;
-			padding: 1em;
-		}
-
-		.attendeesInfo {
-			display: block;
-		}
-
-		.feedback button.primary {
-			margin-top: 2em;
-		}
-
-	}
 
 /*-- End feedback --*/
