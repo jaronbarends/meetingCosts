@@ -3,29 +3,29 @@
 	'use strict';
 
 	//define file wide vars
-	var f_numAttendees,
-		f_avgRate,
-		f_meetingStartMsecs,//initial start timestam
-		f_lastNumChangeMsecs,//start timestamp from last attendee count change
-		f_calcTimer,
-		f_ratePerSecond,
-		f_updateDelay = 200,
-		f_costsAtLastNumChange = 0;//holds the costs at the time of the last attendee count change
+	var sgNumAttendees,
+		sgAvgRate,
+		sgMeetingStartMsecs,//initial start timestam
+		sgLastNumChangeMsecs,//start timestamp from last attendee count change
+		sgCalcTimer,
+		sgRatePerSecond,
+		sgUpdateDelay = 200,
+		sgCostsAtLastNumChange = 0;//holds the costs at the time of the last attendee count change
 
-	var f_$setupScreen = $('#setup'),
-		f_$feedbackScreen = $('#feedback'),
-		f_$currDuration = $('#currDuration'),
-		f_$currEuros = $('#currEuros'),
-		f_$currCents = $('#currCents'),
-		f_$costs = $('#costs'),
-		f_$currAttendees = $('#currAttendees'),
-		f_$stopBtn = $('#stopBtn'),
-		f_$backBtn = $('#backBtn'),
-		f_$resumeBtn = $('#resumeBtn');
+	var $sgSetupScreen = $('#setup'),
+		$sgFeedbackScreen = $('#feedback'),
+		$sgCurrDuration = $('#currDuration'),
+		$sgCurrEuros = $('#currEuros'),
+		$sgCurrCents = $('#currCents'),
+		$sgCosts = $('#costs'),
+		$sgCurrAttendees = $('#currAttendees'),
+		$sgStopBtn = $('#stopBtn'),
+		$sgBackBtn = $('#backBtn'),
+		$sgResumeBtn = $('#resumeBtn');
 
-	var f_lastH,
-		f_lastS,
-		f_lastL;
+	var sgLastH,
+		sgLastS,
+		sgLastL;
 
 	/**
 	* get the current formatted cost in total euros
@@ -93,12 +93,12 @@
 	*/
 	var getCurrentCostsAndTime = function() {
 		var now = new Date().getTime(),
-			meetingDurationMsecs = now - f_meetingStartMsecs,
+			meetingDurationMsecs = now - sgMeetingStartMsecs,
 			meetingDurationSecs = Math.floor(meetingDurationMsecs/1000),
-			msecsSinceLastNumChange = now - f_lastNumChangeMsecs,
+			msecsSinceLastNumChange = now - sgLastNumChangeMsecs,
 			currCosts;
 
-		currCosts = f_costsAtLastNumChange + f_ratePerSecond*(msecsSinceLastNumChange/1000);
+		currCosts = sgCostsAtLastNumChange + sgRatePerSecond*(msecsSinceLastNumChange/1000);
 
 		var currCT = {
 			costs: currCosts,
@@ -117,15 +117,15 @@
 	var updateCosts = function() {
 		var currCT = getCurrentCostsAndTime();
 		
-		f_$currDuration.html(formatTime(currCT.meetingDurationSecs));
-		f_$currEuros.html(getFormattedEuros(currCT.costs));
-		f_$currCents.html(','+getFormattedCents(currCT.costs));
+		$sgCurrDuration.html(formatTime(currCT.meetingDurationSecs));
+		$sgCurrEuros.html(getFormattedEuros(currCT.costs));
+		$sgCurrCents.html(','+getFormattedCents(currCT.costs));
 
-		//console.log('f_numAttendees:',f_numAttendees,'f_ratePerSecond:'+f_ratePerSecond);
+		//console.log('sgNumAttendees:',sgNumAttendees,'sgRatePerSecond:'+sgRatePerSecond);
 		changeHSL();
 
-		clearTimeout(f_calcTimer);
-		f_calcTimer = setTimeout(updateCosts, f_updateDelay);
+		clearTimeout(sgCalcTimer);
+		sgCalcTimer = setTimeout(updateCosts, sgUpdateDelay);
 	};
 
 
@@ -135,18 +135,18 @@
 	* @returns {undefined}
 	*/
 	var changeHSL = function() {
-		f_lastH ++;
-		if (f_lastH > 360) {
-			f_lastH = 0;
+		sgLastH ++;
+		if (sgLastH > 360) {
+			sgLastH = 0;
 		}
 
-		var hsla = 'hsla('+f_lastH+','+f_lastS+','+f_lastL+',1)';
+		var hsla = 'hsla('+sgLastH+','+sgLastS+','+sgLastL+',1)';
 
-		//f_$currEuros.css('color', hsl);
-		//f_$currCents.css('color', hsl);
+		//$sgCurrEuros.css('color', hsl);
+		//$sgCurrCents.css('color', hsl);
 		//console.log(hsla);
-		f_$costs.css({'color': hsla, 'border-color': hsla});
-		//console.log(f_$costs.css('color'));
+		$sgCosts.css({'color': hsla, 'border-color': hsla});
+		//console.log($sgCosts.css('color'));
 	};
 	
 
@@ -156,19 +156,19 @@
 	* @returns {undefined}
 	*/
 	var initHSL = function() {
-		//var rgb = f_$currEuros.css('color');
-		var rgb = f_$costs.css('color');
+		//var rgb = $sgCurrEuros.css('color');
+		var rgb = $sgCosts.css('color');
 
 		rgb = rgb.substring(4,rgb.length-1);//strip off 'rgb(' and ')'
 		rgb = rgb.replace(' ','','g');
 		rgb = rgb.split(',');
 		
 		var hsl = rgbToHsl(rgb[0], rgb[1], rgb[2]);
-		f_lastH = Math.floor(360*hsl[0]);
-		f_lastS = Math.floor(100*hsl[1])+'%';
-		f_lastL = Math.floor(100*hsl[2])+'%';
+		sgLastH = Math.floor(360*hsl[0]);
+		sgLastS = Math.floor(100*hsl[1])+'%';
+		sgLastL = Math.floor(100*hsl[2])+'%';
 
-		//console.log(f_lastH, f_lastS, f_lastL);
+		//console.log(sgLastH, sgLastS, sgLastL);
 	};
 	
 	
@@ -179,7 +179,7 @@
 	* @returns {void}
 	*/
 	var updateRatePerSecond = function() {
-		f_ratePerSecond = f_numAttendees*f_avgRate/3600;
+		sgRatePerSecond = sgNumAttendees*sgAvgRate/3600;
 	};
 
 
@@ -189,8 +189,8 @@
 	* @returns {void}
 	*/
 	var updateNumAttendees = function(numAttendees) {
-		f_numAttendees = numAttendees;
-		f_$currAttendees.text(f_numAttendees);
+		sgNumAttendees = numAttendees;
+		$sgCurrAttendees.text(sgNumAttendees);
 	}
 
 
@@ -202,22 +202,28 @@
 	var startMeeting = function(e) {
 		e.preventDefault();
 
-		var numAttendees = parseInt($('input[name="numAttendees"]:checked').val(),10);
-		updateNumAttendees(numAttendees);
+		//check if input is filled in, or radio
+		var numAttendees = parseInt($('#more-attendees-input').val(), 10);
 
-		f_avgRate = parseInt($('#hourlyRate').val(),10);
+		if (!numAttendees) {
+			numAttendees = parseInt($('input[name="numAttendees"]:checked').val(),10);
+		}
+		updateNumAttendees(numAttendees);
+		console.log(numAttendees);
+
+		sgAvgRate = parseInt($('#hourlyRate').val(),10);
 		updateRatePerSecond();
 
-		f_meetingStartMsecs = Math.floor(new Date().getTime());
-		f_lastNumChangeMsecs = f_meetingStartMsecs;
+		sgMeetingStartMsecs = Math.floor(new Date().getTime());
+		sgLastNumChangeMsecs = sgMeetingStartMsecs;
 
-		f_costsAtLastNumChange = 0;
+		sgCostsAtLastNumChange = 0;
 		updateCosts();
 
 		showFeedbackScreen();
 
-		clearTimeout(f_calcTimer);
-		f_calcTimer = setTimeout(updateCosts, f_updateDelay);
+		clearTimeout(sgCalcTimer);
+		sgCalcTimer = setTimeout(updateCosts, sgUpdateDelay);
 	};
 
 
@@ -227,7 +233,7 @@
 	* @returns {void}
 	*/
 	var endMeeting = function() {
-		clearTimeout(f_calcTimer);
+		clearTimeout(sgCalcTimer);
 
 		$('#stopBtn').hide();
 		$('#backBtn').show();
@@ -243,8 +249,8 @@
 	var showStartScreen = function(e) {
 		e.preventDefault();
 
-		f_$setupScreen.fadeIn();
-		//f_$feedbackScreen.fadeOut();
+		$sgSetupScreen.fadeIn();
+		//$sgFeedbackScreen.fadeOut();
 	};
 
 
@@ -254,12 +260,12 @@
 	* @returns {void}
 	*/
 	var showFeedbackScreen = function() {
-		f_$setupScreen.fadeOut();
-		//f_$feedbackScreen.fadeIn();
+		$sgSetupScreen.fadeOut();
+		//$sgFeedbackScreen.fadeIn();
 
-		f_$stopBtn.show();
-		f_$backBtn.hide();
-		f_$resumeBtn.hide();
+		$sgStopBtn.show();
+		$sgBackBtn.hide();
+		$sgResumeBtn.hide();
 	}
 
 
@@ -317,23 +323,46 @@
 		e.preventDefault();
 
 		//calculate new number of attendees
-		var add = (e.currentTarget.id === 'moreAttendees') ? 1:-1,
-			newNumAttendees = f_numAttendees+add;
+		var add = (e.currentTarget.id === 'more-attendees') ? 1:-1,
+			newNumAttendees = sgNumAttendees+add;
 
 		if (newNumAttendees > 0) {
 			//set costs until now and this change's timestamp
 			var currCT = getCurrentCostsAndTime();
-			f_lastNumChangeMsecs = currCT.now;
-			f_costsAtLastNumChange = currCT.costs;
+			sgLastNumChangeMsecs = currCT.now;
+			sgCostsAtLastNumChange = currCT.costs;
 
 			//now set new number of attendees
 			updateNumAttendees(newNumAttendees);
 			updateRatePerSecond();
 		}
 	};
+
+
+	/**
+	* handle setting num of attendees by input
+	* @returns {undefined}
+	*/
+	var handleAttendeesInput = function(e) {
+		var $input = $(e.currentTarget),
+			value = parseInt($input.val(), 10);	
+
+		if (value) {
+			$('[name="numAttendees"]').prop('checked', false);
+			$input.removeClass('is-empty');
+		}
+	};
+
+
+	/**
+	* reset the attendees input feeld
+	* @returns {undefined}
+	*/
+	var resetAttendeesInput = function(e) {
+		$('#more-attendees-input').val('').addClass('is-empty');
+	};
 	
-
-
+	
 	/**
 	* 
 	* @param {string} varname Description
@@ -351,7 +380,9 @@
 		$('#backBtn').on('click', showStartScreen);
 		$('#resumeBtn').on('click', resumeMeeting);
 		initHSL();
-		$('#lessAttendees, #moreAttendees').on('click', changeAttendeeCountHandler);
+		$('.attendees-list').find('input[type="radio"]').on('click', resetAttendeesInput);
+		$('#more-attendees-input').on('keyup', handleAttendeesInput);
+		$('#less-attendees, #more-attendees').on('click', changeAttendeeCountHandler);
 	};
 
 	jQuery(document).ready(function() {

@@ -9,11 +9,12 @@
 	<!-- <base href="" /> -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	
-	<title>Hoeveel kost deze meeting?</title>
+	<title>How much does this meeting cost?</title>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<link rel="stylesheet" href="css/meeting.css">
+	<link rel="stylesheet" href="css/icomoon.css">
 
 </head>
 <body>
@@ -27,28 +28,30 @@
 			<section class="setup" id="setup">
 				<form>
 					<div class="attendees">
-						<h2>Aantal deelnemers</h2>
-						<ol>
+						<h2>How many people are attending?</h2>
+						<ol class="attendees-list">
 							<li><input name="numAttendees" id="attendees-1" type="radio" value="1"><label for="attendees-1">1</label></li>
-							<li><input name="numAttendees" id="attendees-2" type="radio" value="2" checked><label for="attendees-2">2</label></li>
+							<li><input name="numAttendees" id="attendees-2" type="radio" value="2"><label for="attendees-2">2</label></li>
 							<li><input name="numAttendees" id="attendees-3" type="radio" value="3"><label for="attendees-3">3</label></li>
-							<li><input name="numAttendees" id="attendees-4" type="radio" value="4"><label for="attendees-4">4</label></li>
+							<li><input name="numAttendees" id="attendees-4" type="radio" value="4" checked><label for="attendees-4">4</label></li>
 							<li><input name="numAttendees" id="attendees-5" type="radio" value="5"><label for="attendees-5">5</label></li>
 							<li><input name="numAttendees" id="attendees-6" type="radio" value="6"><label for="attendees-6">6</label></li>
 							<li><input name="numAttendees" id="attendees-7" type="radio" value="7"><label for="attendees-7">7</label></li>
 							<li><input name="numAttendees" id="attendees-8" type="radio" value="8"><label for="attendees-8">8</label></li>
-							<!-- <li><input class="moreAttendees" id="moreAttendees" name="" type="text" pattern="[0-9]*" placeholder="..."></li> -->
+							<li><input class="more-attendees-input is-empty" id="more-attendees-input" name="more-attendees-number" type="text" pattern="[0-9]*" placeholder="more..."></li>
 						</ol>
 					</div>
 
 					<div class="rate">
-						<h2>Gemiddeld uurtarief</h2>
+						<h2>What is the avarage hourly rate?</h2>
 						<div class="rateholder">
-							<label for="hourlyRate">&euro;</label><input id="hourlyRate" class="hourlyRate" type="text" value="100" pattern="[0-9]*"/>
+							
+						<input id="hourlyRate" class="hourlyRate" type="text" value="100" pattern="[0-9]*"/>
+						<label for="hourlyRate">per person</label>
 						</div>
 					</div>
 
-					<button class="primary start" id="startBtn">&#9654;</button>
+					<button class="primary start" id="startBtn">Start</button>
 				</form>
 			</section>
 
@@ -62,13 +65,13 @@
 						<div id="currAttendees" class="currAttendees">
 							0
 						</div>
-						<button id="lessAttendees" class="less">-</button><button id="moreAttendees" class="more">+</button>
+						<button id="less-attendees" class="less"><span class="icon-user-minus"></span></button><button id="more-attendees" class="more"><span class="icon-user-plus"></span></button>
 					</div><!-- /.attendeesInfo -->
 					<button class="primary stop" id="stopBtn">
-						&#9724;
+						Stop
 					</button>
 					<button class="primary back" id="backBtn">
-						&#11013;
+						Back
 					</button>
 					<button class="secundary resume" id="resumeBtn">Ga door met deze meeting</button>
 				</div>
