@@ -1,12 +1,7 @@
 <!doctype html>
-<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="nl" class="no-js"> <!--<![endif]-->
+<html lang="nl">
 <head>
 	<meta charset="UTF-8">
-	<!-- <base href="" /> -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	
 	<title>How much does this meeting cost?</title>
@@ -21,13 +16,10 @@
 	<div id="wrapper" class="wrapper">
 
 		<div id="main" class="main" role="main">
-
-
-
 			
-			<section class="setup" id="setup">
+			<section class="screen screen--setup" id="setup">
 				<form>
-					<div class="attendees">
+					<fieldset class="attendees">
 						<h2>How many people are attending?</h2>
 						<ol class="attendees-list">
 							<li><input name="numAttendees" id="attendees-1" type="radio" value="1"><label for="attendees-1">1</label></li>
@@ -37,28 +29,38 @@
 							<li><input name="numAttendees" id="attendees-5" type="radio" value="5"><label for="attendees-5">5</label></li>
 							<li><input name="numAttendees" id="attendees-6" type="radio" value="6"><label for="attendees-6">6</label></li>
 							<li><input name="numAttendees" id="attendees-7" type="radio" value="7"><label for="attendees-7">7</label></li>
-							<li><input name="numAttendees" id="attendees-8" type="radio" value="8"><label for="attendees-8">8</label></li>
-							<li><input class="more-attendees-input is-empty" id="more-attendees-input" name="more-attendees-number" type="text" pattern="[0-9]*" placeholder="more..."></li>
+							<li><input class="more-attendees-input is-empty" id="more-attendees-input" name="more-attendees-number" type="text" pattern="[0-9]*" placeholder="more…"></li>
 						</ol>
-					</div>
+					</fieldset>
 
-					<div class="rate">
-						<h2>What is the avarage hourly rate?</h2>
+					<fieldset class="rate">
+						<label class="h2" for="hourlyRate">What is the avarage hourly rate?</label>
+						<p class="clarification">(Per person)</p>
 						<div class="rateholder">
-							
-						<input id="hourlyRate" class="hourlyRate" type="text" value="100" pattern="[0-9]*"/>
-						<label for="hourlyRate">per person</label>
+							<input type="text" class="input--currency" value="€">
+							<input id="hourlyRate" class="input--hourly-rate" type="text" value="100" pattern="[0-9]*"/>
 						</div>
-					</div>
+					</fieldset>
 
-					<button class="primary start" id="startBtn">Start</button>
+					<fieldset class="meetingSince">
+						<label class="h2" for="since">When did the meeting start?</label>
+						<p class="clarification">(Exact time or number of minutes ago)</p>
+						<input id="since" class="input--since" type="text" value="0" pattern="[0-9]*"/>
+						<ol class="since-list">
+							<li class="since-list__item">now</li>
+							<li class="since-list__item">14:30</li>
+							<li class="since-list__item">15:00</li>
+						</ol>
+					</fieldset>
+
+					<button class="primary" id="startBtn">Start counting</button>
 				</form>
 			</section>
 
 
 
 
-			<section id="feedback" class="feedback">
+			<section id="feedback" class="screen screen--feedback">
 
 				<div class="metaInfo">
 					<div class="attendeesInfo">

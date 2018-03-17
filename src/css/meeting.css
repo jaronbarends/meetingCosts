@@ -1,10 +1,29 @@
 /*-- Start reset --*/
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,  figure, figcaption, footer, header, hgroup,  menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; } /* HTML5 display-role reset for older browsers */ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; } ol, ul { list-style: none; } blockquote, q { quotes: none; } blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; } table { border-collapse: collapse; border-spacing: 0; }
+	html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, abbr, acronym, em, img, s, small, strong, sub, sup, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, figcaption, footer, header, hgroup,  menu, nav, output, section, summary, time, mark {
+		margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline;
+	}
 
-input, button, textarea, select, option {
-	font: inherit;
-}
+	ol,
+	ul {
+		list-style: none;
+	}
+
+	input, button, textarea, select, option {
+		font: inherit;
+	}
 /*-- Einde reset --*/
+
+:root {
+	--font-size-default: 1.8rem;
+	--color-grey: #666;
+	--color-grey-light: #999;
+	--color-grey-xlight: #ccc;
+	--color-grey-xxlight: #eee;
+	--color-primary: #00bdfa;
+
+	--br: 2px;/* border radius */
+}
+
 
 * {
 	box-sizing: border-box;
@@ -17,7 +36,15 @@ html {
 
 body {
 	font-family: "arial narrow", arial, helvetica, sans-serif;
-	font-size: 1.6rem;
+	font-size: var(--font-size-default);
+	color: var(--color-grey);
+}
+
+h2,
+.h2 {
+	display: block;
+	margin: 0 0 var(--font-size-default);
+	color: var(--color-primary);
 }
 
 button,
@@ -27,12 +54,37 @@ label {
 
 input,
 button {
-	border-radius: 2px;
+	border-radius: var(--br);
+	text-align: center;
+	font-size: 2.4rem;
 }
 
-h2 {
+input[type="text"] {
+	border: none;
+	border-bottom: 2px solid var(--color-grey-xlight);
+}
+
+button {
 	margin: 1em;
-	color: #999;
+	border: none;
+	padding: 0.5em;
+	background: var(--color-primary);
+	color: #fff;
+	font: inherit;
+}
+
+button.primary {
+	display: inline-block;
+	margin-top: 2em;
+	margin-bottom: 0;
+	font-family: arial;
+	padding: 1em 2em;
+	line-height: 1;
+	letter-spacing: 0.02em;
+	box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+label {
 }
 
 .main {
@@ -40,163 +92,171 @@ h2 {
 	height: 480px;
 }
 
-section {
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+.screen {
 	position: absolute;
 	top: 0;
 	left: 0;
-	padding: 1em 0;
+	padding: 1em;
 	text-align: center;
-	width: 100%;
-	height: 100%;
+	/* width: 100%;
+	height: 100%; */
+	/* iPhone 5 */
+	/* width: 320px;
+	height: 568px; */
+	/* iPhone 6 */
+	width: 375px;
+	height: 667px;
+	border: 1px solid #ccc;
 	background: #fff;
 }
 
-.setup {
+.screen--setup {
 	z-index: 1;
 }
 
-.feedback {
+.screen--feedback {
 	z-index: 0;
 }
 
 
 
-	button {
-		margin: 1em;
-		border: none;
-		padding: 0.5em;
-		color: #fff;
-		font: inherit;
-	}
-
-	button.primary {
-		display: inline-block;
-		margin-top: 2em;
-		margin-bottom: 0;
-		border-radius: 5px;
-		height: 3em;
-		font-size: 2.4rem;
-		line-height: 1;
-		text-transform: uppercase;
-	}
-
-	button.start {
-		background: #358822;
-	}
+/*-- Start setup screen --*/
 
 	.feedback button.primary {
 		margin-top: 0;
 		vertical-align: middle;
 	}
 
+	fieldset {
+		border-top: 1px solid var(--color-grey-xlight);/* color grey-xlight */
+		padding: 1em;
+	}
+
+	fieldset:first-child {
+		border-top: none;
+	}
+
+	.clarification {
+		font-size: 1.4rem;
+		color: var(--color-grey-light);
+	}
+
+	h2 + .clarification,
+	.h2 + .clarification {
+		/* margin: calc(-1 * var(--font-size-default)) 0 var(--font-size-default);	 */
+		margin: -1em 0 var(--font-size-default);	
+	}
+
+	/*-- Start attendees-list --*/
+
+		.attendees-list {
+			margin: 0 auto;
+			max-width: 320px;
+		}
+
+		.attendees-list > li {
+			position: relative;
+			display: inline-block;
+			margin: 0.2em;
+			overflow: hidden;
+		}
+
+		.attendees label,
+		.more-attendees-input {
+			display: block;
+			padding: 0.4em 0;
+			width: 2.2em;
+			height: 2.2em;
+			border: 3px solid var(--color-grey-xxlight);
+			border-radius: var(--br);
+			background: #fff;
+			text-align: center;
+			color: #333;
+			font-size: 2.4rem;
+		}
+
+		::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+			font-style: italic;
+			font-size: smaller;
+		}
+		::-moz-placeholder { /* Firefox 19+ */
+			font-style: italic;
+			font-size: smaller;
+		}
+		:-ms-input-placeholder { /* IE 10+ */
+			font-style: italic;
+			font-size: smaller;
+		}
+
+		.no-touch input[type="radio"].active+label,
+		.attendees input[type="radio"]:checked+label,
+		input[type="text"].more-attendees-input {
+			border-color: transparent;
+			color: #fff;
+			background: var(--color-grey);
+		}
+
+		.attendees input[type="radio"] {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			z-index: -1;
+		}
+
+		input[type="text"].more-attendees-input.is-empty {
+			background: none;
+			border-radius: 0;
+			border-bottom: 2px solid #ccc;
+		}
+
+	/*-- End attendees --*/
+
+	/*-- Start hourly rate --*/
+
+		.input--currency {
+			width: 1em;
+		}
+
+		.input--hourly-rate {
+			width: 3em;
+		}
+
+	/*-- End hourly rate --*/
+
+	/*-- Start since --*/
+
+		.input--since {
+			width: 3em;
+		}
+
+		.since-list {
+			margin-top: 1em;
+		}
+
+		.since-list__item {
+			display: inline-block;
+			border: 1px solid var(--color-grey-xlight);
+			border-radius: var(--br);
+			padding: 0.2em 0.5em;
+		}
+
+	/*-- End since --*/
+
+/*-- End setup screen --*/
+
+
+
+/*-- Start feedback screen --*/
+
 	button.stop {
-		background: #822;
-		background: #999;
+		/* background: #822;
+		background: #999; */
 	}
 
 	button.back,
 	button.resume {
 		display: none;
 	}
-
-	.attendees li {
-		position: relative;
-		display: inline-block;
-		margin: 0.2em;
-		overflow: hidden;
-	}
-
-	.attendees label,
-	.more-attendees-input {
-		display: block;
-		padding: 0.6em 0;
-		width: 2.5em;
-		height: 2.5em;
-		border: 3px solid #eee;
-		border: 3px solid #ccc;
-		border-radius: 5px;
-		background: #fff;
-		text-align: center;
-		color: #333;
-		font-size: 2.4rem;
-	}
-
-	::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-	  font-style: italic;
-	  font-size: smaller;
-	}
-	::-moz-placeholder { /* Firefox 19+ */
-	  font-style: italic;
-	  font-size: smaller;
-	}
-	:-ms-input-placeholder { /* IE 10+ */
-	  font-style: italic;
-	  font-size: smaller;
-  }
-
-	.no-touch input[type="radio"].active+label,
-	.attendees input[type="radio"]:checked+label,
-	input[type="text"].more-attendees-input {
-		border-color: #333;
-		color: #fff;
-		background: #333;
-	}
-
-	.attendees input[type="radio"] {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		z-index: -1;
-	}
-
-	input[type="text"] {
-		/*padding: 0.5em 0 0;*/
-		border: none;
-		border-bottom: 2px solid #ccc;
-	}
-
-	input[type="text"].more-attendees-input {
-	/*	border:none;
-		background: red;*/
-	}
-
-	input[type="text"].more-attendees-input.is-empty {
-		background: none;
-		border-radius: 0;
-		border-bottom: 2px solid #ccc;
-	}
-
-	.rateholder {
-		position: relative;
-	}
-
-	.rate label {
-		position: relative;
-		color: #ccc;
-		font-size: 2.4rem;
-	}
-
-	.rate label:before {
-		position: absolute;
-		display: block;
-		content: '€';
-		top: 0;
-		left: -4.2em;
-	}
-
-	input.hourlyRate {
-		position: relative;
-		margin: 0 0.5em;
-		width: 4em;
-		color: #333;
-		font-size: 2.4rem;
-		text-align: center;
-	}
-
-
-/*-- Start feedback --*/
 
 	.feedback .costs {
 		margin: 1em;
