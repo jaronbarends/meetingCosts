@@ -40,6 +40,10 @@ body {
 	color: var(--color-grey);
 }
 
+strong {
+	font-weight: bold;
+}
+
 h2,
 .h2 {
 	display: block;
@@ -92,40 +96,50 @@ label {
 	height: 480px;
 }
 
-.screen {
-	position: absolute;
-	top: 0;
-	left: 0;
-	padding: 1em;
-	text-align: center;
-	/* width: 100%;
-	height: 100%; */
-	/* iPhone 5 */
-	/* width: 320px;
-	height: 568px; */
-	/* iPhone 6 */
-	width: 375px;
-	height: 667px;
-	border: 1px solid #ccc;
-	background: #fff;
-}
+/*-- Start screens shared --*/
 
-.screen--setup {
-	z-index: 1;
-}
+	.screen {
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 1em;
+		text-align: center;
+		/* width: 100%;
+		height: 100%; */
+		/* iPhone 5 */
+		/* width: 320px;
+		height: 568px; */
+		/* iPhone 6 */
+		width: 375px;
+		height: 667px;
+		border: 1px solid #ccc;
+		background: #fff;
+	}
 
-.screen--feedback {
-	z-index: 0;
-}
+	.screen--setup {
+		z-index: 1;
+	}
+
+	.screen--feedback {
+		z-index: 0;
+		left: 400px;
+	}
+
+
+/*-- End screens shared --*/
 
 
 
 /*-- Start setup screen --*/
 
-	.feedback button.primary {
+	.setup-form {
+	}
+
+	.screen--feedback button.primary {
 		margin-top: 0;
 		vertical-align: middle;
 	}
+
 
 	fieldset {
 		border-top: 1px solid var(--color-grey-xlight);/* color grey-xlight */
@@ -209,6 +223,7 @@ label {
 			border-bottom: 2px solid #ccc;
 		}
 
+
 	/*-- End attendees --*/
 
 	/*-- Start hourly rate --*/
@@ -253,20 +268,33 @@ label {
 		background: #999; */
 	}
 
-	button.back,
-	button.resume {
+	button.back {
 		display: none;
 	}
 
-	.feedback .costs {
+	@keyframes colorAnimation {
+		0%,
+		100% {
+			color: var(--color-grey);
+		}
+		50% {
+			color: var(--color-primary);
+		}
+	}
+
+	.screen--feedback .costs {
 		margin: 1em;
-		color: hsl(205,50%,75%);
-		color: #248;
+		/* color: hsl(205,50%,75%);
+		color: #248; */
+		animation: colorAnimation 20s infinite;
 	}
 
 	.currency {
-		margin: 0.5em;
+		display: inline-block;
+		margin: 0 0.1em 0 -0.7em;
+		width: 0.5em;
 		color: #ccc;
+		font-size: 8rem;
 	}
 
 	.currEuros {
@@ -285,12 +313,12 @@ label {
 	}
 
 	.metaInfo {
-		position: absolute;
-		bottom: 0;
-		border-top: 1px solid #ddd;
+		/* position: absolute; */
+		/* bottom: 0; */
+		/* border-top: 1px solid #ddd;
 		padding: 1em 0;
 		width: 100%;
-		text-align: center;
+		text-align: center; */
 	}
 
 	.attendeesInfo {
@@ -332,28 +360,5 @@ label {
 			color: #ccc;
 		}
 
-	/*-- Start larger screens --*/
-	@media screen and (min-width: 25em) {
-
-		.metaInfo {
-			position: static;
-			float: right;
-			border: none;
-			border-left: 1px solid #ddd;
-			height: 100%;
-			width: auto;
-			text-align: center;
-			padding: 1em;
-		}
-
-		.attendeesInfo {
-			display: block;
-		}
-
-		.feedback button.primary {
-			margin-top: 2em;
-		}
-
-	}
 
 /*-- End feedback --*/

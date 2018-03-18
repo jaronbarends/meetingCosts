@@ -18,9 +18,9 @@
 		<div id="main" class="main" role="main">
 			
 			<section class="screen screen--setup" id="setup">
-				<form>
+				<form class="setup-form">
 					<fieldset class="attendees">
-						<h2>How many people are attending?</h2>
+						<h2><strong>How many</strong> people are attending?</h2>
 						<ol class="attendees-list">
 							<li><input name="numAttendees" id="attendees-1" type="radio" value="1"><label for="attendees-1">1</label></li>
 							<li><input name="numAttendees" id="attendees-2" type="radio" value="2"><label for="attendees-2">2</label></li>
@@ -34,7 +34,7 @@
 					</fieldset>
 
 					<fieldset class="rate">
-						<label class="h2" for="hourlyRate">What is the avarage hourly rate?</label>
+						<label class="h2" for="hourlyRate">What is the avarage <strong>hourly rate</strong>?</label>
 						<p class="clarification">(Per person)</p>
 						<div class="rateholder">
 							<input type="text" class="input--currency" value="€">
@@ -43,7 +43,7 @@
 					</fieldset>
 
 					<fieldset class="meetingSince">
-						<label class="h2" for="since">When did the meeting start?</label>
+						<label class="h2" for="since"><strong>When</strong> did the meeting start?</label>
 						<p class="clarification">(Exact time or number of minutes ago)</p>
 						<input id="since" class="input--since" type="text" value="0" pattern="[0-9]*"/>
 						<ol class="since-list">
@@ -53,7 +53,9 @@
 						</ol>
 					</fieldset>
 
-					<button class="primary" id="startBtn">Start counting</button>
+					<fieldset class="cta-container">
+						<button class="primary" id="startBtn">Start counting</button>
+					</fieldset>
 				</form>
 			</section>
 
@@ -62,33 +64,24 @@
 
 			<section id="feedback" class="screen screen--feedback">
 
-				<div class="metaInfo">
-					<div class="attendeesInfo">
-						<div id="currAttendees" class="currAttendees">
-							0
-						</div>
-						<button id="less-attendees" class="less"><span class="icon-user-minus"></span></button><button id="more-attendees" class="more"><span class="icon-user-plus"></span></button>
-					</div><!-- /.attendeesInfo -->
-					<button class="primary stop" id="stopBtn">
-						Stop
-					</button>
-					<button class="primary back" id="backBtn">
-						Back
-					</button>
-					<button class="secundary resume" id="resumeBtn">Ga door met deze meeting</button>
+				<div id="currDuration" class="currDuration">00:00</div>
+
+				<div class="costs" id="costs">
+					<span class="currency">€</span>
+					<span class="currEuros" id="currEuros">0</span>
+					<span class="currCents" id="currCents">,00</span>
 				</div>
 
-				<div class="mainInfo">
-				
-					<div id="currDuration" class="currDuration">00:00</div>
-
-					<div class="costs" id="costs">
-						<!-- <span class="currency">&euro;</span> -->
-						<span class="currEuros" id="currEuros">0</span>
-						<span class="currCents" id="currCents">,00</span>
-						<div class="currency">Euro</div>
+				<div class="attendeesInfo">
+					<div id="currAttendees" class="currAttendees">
+						0
 					</div>
+					<button id="less-attendees" class="less"><span class="icon-user-minus"></span></button><button id="more-attendees" class="more"><span class="icon-user-plus"></span></button>
+				</div><!-- /.attendeesInfo -->
 
+				<div class="cta-container">
+					<button class="primary stop" id="stopBtn">We're done</button>
+					<button class="primary back" id="backBtn">Back</button>
 				</div>
 
 			</section>

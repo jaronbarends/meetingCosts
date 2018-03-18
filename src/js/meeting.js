@@ -20,8 +20,7 @@
 		$sgCosts = $('#costs'),
 		$sgCurrAttendees = $('#currAttendees'),
 		$sgStopBtn = $('#stopBtn'),
-		$sgBackBtn = $('#backBtn'),
-		$sgResumeBtn = $('#resumeBtn');
+		$sgBackBtn = $('#backBtn');
 
 	var sgLastH,
 		sgLastS,
@@ -122,56 +121,13 @@
 		$sgCurrCents.html(','+getFormattedCents(currCT.costs));
 
 		//console.log('sgNumAttendees:',sgNumAttendees,'sgRatePerSecond:'+sgRatePerSecond);
-		changeHSL();
+		// changeHSL();
 
 		clearTimeout(sgCalcTimer);
 		sgCalcTimer = setTimeout(updateCosts, sgUpdateDelay);
 	};
 
 
-	/**
-	* 
-	* @param {string} varname Description
-	* @returns {undefined}
-	*/
-	var changeHSL = function() {
-		sgLastH ++;
-		if (sgLastH > 360) {
-			sgLastH = 0;
-		}
-
-		var hsla = 'hsla('+sgLastH+','+sgLastS+','+sgLastL+',1)';
-
-		//$sgCurrEuros.css('color', hsl);
-		//$sgCurrCents.css('color', hsl);
-		//console.log(hsla);
-		$sgCosts.css({'color': hsla, 'border-color': hsla});
-		//console.log($sgCosts.css('color'));
-	};
-	
-
-
-	/**
-	* initialize hsl vars
-	* @returns {undefined}
-	*/
-	var initHSL = function() {
-		//var rgb = $sgCurrEuros.css('color');
-		var rgb = $sgCosts.css('color');
-
-		rgb = rgb.substring(4,rgb.length-1);//strip off 'rgb(' and ')'
-		rgb = rgb.replace(' ','','g');
-		rgb = rgb.split(',');
-		
-		var hsl = rgbToHsl(rgb[0], rgb[1], rgb[2]);
-		sgLastH = Math.floor(360*hsl[0]);
-		sgLastS = Math.floor(100*hsl[1])+'%';
-		sgLastL = Math.floor(100*hsl[2])+'%';
-
-		//console.log(sgLastH, sgLastS, sgLastL);
-	};
-	
-	
 
 	/**
 	* update the current rate per second
@@ -237,7 +193,6 @@
 
 		$('#stopBtn').hide();
 		$('#backBtn').show();
-		//$('#resumeBtn').show();
 	};
 
 
@@ -265,53 +220,8 @@
 
 		$sgStopBtn.show();
 		$sgBackBtn.hide();
-		$sgResumeBtn.hide();
 	}
 
-
-
-	/**
-	* 
-	* @param {string} varname Description
-	* @returns {void}
-	*/
-	var resumeMeeting = function(e) {
-		
-	}
-
-
-
-	/**
-	* Converts an RGB color value to HSL. Conversion formula
-	* adapted from http://en.wikipedia.org/wiki/HSL_color_space.
-	* Assumes r, g, and b are contained in the set [0, 255] and
-	* returns h, s, and l in the set [0, 1].
-	* from http://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion
-	*
-	* @param   Number  r       The red color value
-	* @param   Number  g       The green color value
-	* @param   Number  b       The blue color value
-	* @return  Array           The HSL representation
-	*/
-	var rgbToHsl = function(r, g, b){
-		r /= 255, g /= 255, b /= 255;
-		var max = Math.max(r, g, b), min = Math.min(r, g, b);
-		var h, s, l = (max + min) / 2;
-
-		if(max == min){
-			h = s = 0; // achromatic
-		}else{
-			var d = max - min;
-			s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-			switch(max){
-				case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-				case g: h = (b - r) / d + 2; break;
-				case b: h = (r - g) / d + 4; break;
-			}
-			h /= 6;
-		}
-		return [h, s, l];
-	};
 
 
 	/**
@@ -378,8 +288,7 @@
 		$('#startBtn').on('click', startMeeting);
 		$('#stopBtn').on('click', endMeeting);
 		$('#backBtn').on('click', showStartScreen);
-		$('#resumeBtn').on('click', resumeMeeting);
-		initHSL();
+		
 		$('.attendees-list').find('input[type="radio"]').on('click', resetAttendeesInput);
 		$('#more-attendees-input').on('keyup', handleAttendeesInput);
 		$('#less-attendees, #more-attendees').on('click', changeAttendeeCountHandler);
