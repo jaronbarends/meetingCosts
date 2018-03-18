@@ -42,20 +42,23 @@
 						</div>
 					</fieldset>
 
-					<fieldset class="meetingSince">
+					<!-- <fieldset class="meetingSince">
 						<label class="h2" for="since"><strong>When</strong> did the meeting start?</label>
-						<p class="clarification">(Exact time or number of minutes ago)</p>
+						<p class="clarification">
+							Number of minutes ago (0-99)
+							<br>or Exact time (100-2400)
+						</p>
 						<input id="since" class="input--since" type="text" value="0" pattern="[0-9]*"/>
 						<ol class="since-list">
 							<li class="since-list__item">now</li>
 							<li class="since-list__item">14:30</li>
 							<li class="since-list__item">15:00</li>
 						</ol>
-					</fieldset>
+					</fieldset> -->
 
-					<fieldset class="cta-container">
+					<div class="cta-container cta-container--start">
 						<button class="primary" id="startBtn">Start counting</button>
-					</fieldset>
+					</div>
 				</form>
 			</section>
 
@@ -67,16 +70,24 @@
 				<div id="currDuration" class="currDuration">00:00</div>
 
 				<div class="costs" id="costs">
-					<span class="currency">€</span>
-					<span class="currEuros" id="currEuros">0</span>
-					<span class="currCents" id="currCents">,00</span>
+					<div class="i-am-just-here-for-creating-one-flex-item">
+						<span class="currency">€</span>
+						<span class="currEuros" id="currEuros">0</span>
+						<span class="currCents" id="currCents">,00</span>
+					</div>
 				</div>
 
 				<div class="attendeesInfo">
+					<button id="less-attendees" class="less">-</span></button>
+					
 					<div id="currAttendees" class="currAttendees">
-						0
+						<span class="icon-users"></span>
+						<span id="curr-attendees__count">
+							0
+						</span>
 					</div>
-					<button id="less-attendees" class="less"><span class="icon-user-minus"></span></button><button id="more-attendees" class="more"><span class="icon-user-plus"></span></button>
+					<button id="more-attendees" class="more">+</span></button>
+					<!-- <button id="less-attendees" class="less"><span class="icon-user-minus"></span></button><button id="more-attendees" class="more"><span class="icon-user-plus"></span></button> -->
 				</div><!-- /.attendeesInfo -->
 
 				<div class="cta-container">

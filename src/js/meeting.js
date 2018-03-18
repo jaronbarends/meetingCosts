@@ -18,7 +18,7 @@
 		$sgCurrEuros = $('#currEuros'),
 		$sgCurrCents = $('#currCents'),
 		$sgCosts = $('#costs'),
-		$sgCurrAttendees = $('#currAttendees'),
+		$sgCurrAttendees = $('#curr-attendees__count'),
 		$sgStopBtn = $('#stopBtn'),
 		$sgBackBtn = $('#backBtn');
 

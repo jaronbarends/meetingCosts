@@ -48,7 +48,7 @@ h2,
 .h2 {
 	display: block;
 	margin: 0 0 var(--font-size-default);
-	color: var(--color-primary);
+	color: var(--color-grey-light);
 }
 
 button,
@@ -61,6 +61,7 @@ button {
 	border-radius: var(--br);
 	text-align: center;
 	font-size: 2.4rem;
+	color: var(--color-primary);
 }
 
 input[type="text"] {
@@ -79,7 +80,6 @@ button {
 
 button.primary {
 	display: inline-block;
-	margin-top: 2em;
 	margin-bottom: 0;
 	font-family: arial;
 	padding: 1em 2em;
@@ -102,6 +102,8 @@ label {
 		position: absolute;
 		top: 0;
 		left: 0;
+		display: flex;
+		justify-content: space-between;
 		padding: 1em;
 		text-align: center;
 		/* width: 100%;
@@ -121,8 +123,13 @@ label {
 	}
 
 	.screen--feedback {
+		flex-direction: column;
 		z-index: 0;
 		left: 400px;
+	}
+
+	.cta-container {
+		padding: 1em;
 	}
 
 
@@ -133,6 +140,9 @@ label {
 /*-- Start setup screen --*/
 
 	.setup-form {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 	}
 
 	.screen--feedback button.primary {
@@ -142,7 +152,7 @@ label {
 
 
 	fieldset {
-		border-top: 1px solid var(--color-grey-xlight);/* color grey-xlight */
+		/* border-top: 1px solid var(--color-grey-xlight); */
 		padding: 1em;
 	}
 
@@ -160,6 +170,8 @@ label {
 		/* margin: calc(-1 * var(--font-size-default)) 0 var(--font-size-default);	 */
 		margin: -1em 0 var(--font-size-default);	
 	}
+
+	
 
 	/*-- Start attendees-list --*/
 
@@ -185,7 +197,7 @@ label {
 			border-radius: var(--br);
 			background: #fff;
 			text-align: center;
-			color: #333;
+			color: var(--color-primary);
 			font-size: 2.4rem;
 		}
 
@@ -205,9 +217,7 @@ label {
 		.no-touch input[type="radio"].active+label,
 		.attendees input[type="radio"]:checked+label,
 		input[type="text"].more-attendees-input {
-			border-color: transparent;
-			color: #fff;
-			background: var(--color-grey);
+			border-color: var(--color-primary);
 		}
 
 		.attendees input[type="radio"] {
@@ -257,19 +267,26 @@ label {
 
 	/*-- End since --*/
 
+	
+	/* fieldsets can not be flex-containers, so use div for that purpose */
+	/* element selector added as a clue */
+	div.cta-container--start {
+		flex-grow: 1;
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+	}
+
 /*-- End setup screen --*/
 
 
 
 /*-- Start feedback screen --*/
 
-	button.stop {
-		/* background: #822;
-		background: #999; */
-	}
 
-	button.back {
-		display: none;
+	.currDuration {
+		margin: 0 1em;
+		color: #ccc;
 	}
 
 	@keyframes colorAnimation {
@@ -283,9 +300,11 @@ label {
 	}
 
 	.screen--feedback .costs {
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 		margin: 1em;
-		/* color: hsl(205,50%,75%);
-		color: #248; */
 		animation: colorAnimation 20s infinite;
 	}
 
@@ -308,57 +327,46 @@ label {
 		color: #ccc;
 	}
 
-	.mainInfo {
-		overflow: hidden;
-	}
 
-	.metaInfo {
-		/* position: absolute; */
-		/* bottom: 0; */
-		/* border-top: 1px solid #ddd;
-		padding: 1em 0;
-		width: 100%;
-		text-align: center; */
-	}
-
-	.attendeesInfo {
+	.attendeesInfo button {
 		display: inline-block;
+		border-radius: 0;
+		margin: 0 0.75em;
+		padding: 0;
+		width: 1.5em;
+		height: 1.5em;
+		font-size: 3rem;
 		vertical-align: middle;
-		margin: 0 auto;
-		width: 6em;
-		border: 1px solid #ddd;
+		color: #ccc;
+		background: transparent;
+		line-height: 0;
 	}
 
-		.attendeesInfo button {
-			display: inline-block;
-			border-radius: 0;
-			margin: 0;
-			padding: 0;
-			width: 1.5em;
-			height: 1.5em;
-			font-size: 3rem;
-			vertical-align: middle;
-			color: #ccc;
-			background: transparent;
-			line-height: 0;
-		}
+	.attendeesInfo .more {
+		/* border-left: 1px solid #ddd; */
+	}
 
-		.attendeesInfo .more {
-			border-left: 1px solid #ddd;
-		}
+	.currAttendees {
+		position: relative;
+		display: inline-block;
+		font-size: 3.6rem;
+		line-height: 1.5;
+		color: #ccc;
+		vertical-align: middle;
+	}
 
-		.currAttendees {
-			border-bottom: 1px solid #ddd;
-			font-size: 3.6rem;
-			line-height: 1.5;
-			color: #ccc;
-			vertical-align: middle;
-		}
+	.currAttendees .icon-users {
+		font-size: 2rem;
+	}
 
-		.currDuration {
-			margin: 0 1em;
-			color: #ccc;
-		}
+		
+	button.stop {
+		/* background: #822;
+		background: #999; */
+	}
 
+	button.back {
+		display: none;
+	}
 
 /*-- End feedback --*/
