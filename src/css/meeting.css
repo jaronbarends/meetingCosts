@@ -125,7 +125,7 @@ label {
 	.screen--feedback {
 		flex-direction: column;
 		z-index: 0;
-		left: 400px;
+		/* left: 400px; */
 	}
 
 	.cta-container {
