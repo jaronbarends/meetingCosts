@@ -1,5 +1,5 @@
 /*-- Start reset --*/
-	html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, abbr, acronym, em, img, s, small, strong, sub, sup, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, figcaption, footer, header, hgroup,  menu, nav, output, section, summary, time, mark {
+	html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, abbr, acronym, em, img, s, small, strong, sub, sup, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, p, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, figcaption, footer, header, hgroup,  menu, nav, output, section, summary, time, mark {
 		margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline;
 	}
 
@@ -169,7 +169,8 @@ label {
 	h2 + .clarification,
 	.h2 + .clarification {
 		/* margin: calc(-1 * var(--font-size-default)) 0 var(--font-size-default);	 */
-		margin: -1em 0 var(--font-size-default);	
+		margin: -1em 0 var(--font-size-default);
+		margin: -1em 0 0.5em;
 	}
 
 	
@@ -240,7 +241,7 @@ label {
 	/*-- Start hourly rate --*/
 
 		.input--currency {
-			width: 1em;
+			width: 1.5em;
 		}
 
 		.input--hourly-rate {
@@ -252,7 +253,7 @@ label {
 	/*-- Start since --*/
 
 		.input--since {
-			width: 3em;
+			width: 4em;
 		}
 
 		.since-list {

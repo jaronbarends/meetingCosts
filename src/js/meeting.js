@@ -327,7 +327,13 @@
 		$('.attendees-list').find('input[type="radio"]').on('click', resetAttendeesInput);
 		$('#more-attendees-input').on('keyup', handleAttendeesInput);
 		$('#less-attendees, #more-attendees').on('click', changeAttendeeCountHandler);
-		$('input').on('focus', function() {this.select();});
+		$('input').on('focus', function() {
+			var fld = this;
+			setTimeout(() => {
+				fld.selectionStart = 0;
+				fld.selectionEnd = fld.value.length;
+			}, 200);
+		});
 	};
 
 	jQuery(document).ready(function() {
