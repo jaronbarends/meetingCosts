@@ -112,10 +112,10 @@ label {
 		/* width: 320px;
 		height: 568px; */
 		/* iPhone 6 */
-		width: 375px;
+		/* width: 375px;
 		height: 667px;
-		height: 559px;
-		border: 1px solid #ccc;
+		height: 559px; */
+		/* border: 1px solid var(--color-grey-xlight); */
 		background: #fff;
 	}
 
@@ -126,7 +126,7 @@ label {
 	.screen--counter {
 		flex-direction: column;
 		z-index: 0;
-		left: 400px;
+		/* left: 400px; */
 	}
 
 	.cta-container {
@@ -231,7 +231,7 @@ label {
 		input[type="text"].more-attendees-input.is-empty {
 			background: none;
 			border-radius: 0;
-			border-bottom: 2px solid #ccc;
+			border-bottom: 2px solid var(--color-grey-xlight);
 		}
 
 
@@ -287,7 +287,7 @@ label {
 
 	.currDuration {
 		margin: 0 1em;
-		color: #ccc;
+		color: var(--color-grey-xlight);
 	}
 
 	@keyframes colorAnimation {
@@ -313,7 +313,7 @@ label {
 		display: inline-block;
 		margin: 0 0.1em 0 -0.7em;
 		width: 0.5em;
-		color: #ccc;
+		color: var(--color-grey-xlight);
 		font-size: 8rem;
 	}
 
@@ -325,7 +325,7 @@ label {
 		display: inline-block;
 		margin-right: -1.5em;
 		font-size: 3.6rem;
-		color: #ccc;
+		color: var(--color-grey-xlight);
 	}
 
 
@@ -338,7 +338,7 @@ label {
 		height: 1.5em;
 		font-size: 3rem;
 		vertical-align: middle;
-		color: #ccc;
+		color: var(--color-grey-xlight);
 		background: transparent;
 		line-height: 0;
 	}
@@ -352,7 +352,7 @@ label {
 		display: inline-block;
 		font-size: 3.6rem;
 		line-height: 1.5;
-		color: #ccc;
+		color: var(--color-grey-xlight);
 		vertical-align: middle;
 	}
 
@@ -362,8 +362,7 @@ label {
 
 		
 	button.stop {
-		/* background: #822;
-		background: #999; */
+		background: #a22;
 	}
 
 	button.back {
