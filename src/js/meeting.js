@@ -328,6 +328,7 @@
 		$('#more-attendees-input').on('keyup', handleAttendeesInput);
 		$('#less-attendees, #more-attendees').on('click', changeAttendeeCountHandler);
 		$('input').on('focus', function() {
+			// simple this.select() doesn't work on iphone
 			var fld = this;
 			setTimeout(() => {
 				fld.selectionStart = 0;
