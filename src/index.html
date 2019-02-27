@@ -8,7 +8,7 @@
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	<link rel="stylesheet" href="css/meeting.css">
+	<link rel="stylesheet" href="css/meeting.css?a=4">
 	<link rel="stylesheet" href="css/icomoon.css">
 
 </head>
@@ -37,24 +37,23 @@
 						<label class="h2" for="hourlyRate">What is the avarage <strong>hourly rate</strong>?</label>
 						<p class="clarification">(Per person)</p>
 						<div class="rateholder">
-							<input type="text" class="input--currency" value="€">
+							<input id="input-currency" class="input--currency" type="text" value="€">
 							<input id="hourlyRate" class="input--hourly-rate" type="text" value="100" pattern="[0-9]*"/>
 						</div>
 					</fieldset>
 
-					<!-- <fieldset class="meetingSince">
+					<fieldset class="meetingSince">
 						<label class="h2" for="since"><strong>When</strong> did the meeting start?</label>
 						<p class="clarification">
-							Number of minutes ago (0-99)
-							<br>or Exact time (100-2400)
+							Minutes ago (0-99) or exact time (100-2400)
 						</p>
-						<input id="since" class="input--since" type="text" value="0" pattern="[0-9]*"/>
-						<ol class="since-list">
+						<input id="meeting-since" class="input--since" type="text" maxlength="4" value="0" pattern="[0-9]*" required>
+						<!-- <ol class="since-list">
 							<li class="since-list__item">now</li>
 							<li class="since-list__item">14:30</li>
 							<li class="since-list__item">15:00</li>
-						</ol>
-					</fieldset> -->
+						</ol> -->
+					</fieldset>
 
 					<div class="cta-container cta-container--start">
 						<button class="primary" id="startBtn">Start counting</button>
@@ -65,13 +64,13 @@
 
 
 
-			<section id="feedback" class="screen screen--feedback">
+			<section id="counter" class="screen screen--counter">
 
 				<div id="currDuration" class="currDuration">00:00</div>
 
 				<div class="costs" id="costs">
 					<div class="i-am-just-here-for-creating-one-flex-item">
-						<span class="currency">€</span>
+						<span id="counter__currency" class="currency">€</span>
 						<span class="currEuros" id="currEuros">0</span>
 						<span class="currCents" id="currCents">,00</span>
 					</div>
@@ -92,7 +91,7 @@
 
 				<div class="cta-container">
 					<button class="primary stop" id="stopBtn">We're done</button>
-					<button class="primary back" id="backBtn">Back</button>
+					<button class="primary back" id="backBtn">Back to start</button>
 				</div>
 
 			</section>
@@ -105,7 +104,7 @@
 	</div><!-- wrapper -->
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-	<script src="js/meeting.js"></script>
+	<script src="js/meeting.js?a=2"></script>
 	<script src="js/FastActive.min.js"></script>
 </body>
 </html>

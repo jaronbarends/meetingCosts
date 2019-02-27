@@ -4,6 +4,7 @@
 
 	//define file wide vars
 	var sgNumAttendees,
+		sgCurrency,
 		sgAvgRate,
 		sgMeetingStartMsecs,//initial start timestam
 		sgLastNumChangeMsecs,//start timestamp from last attendee count change
@@ -13,7 +14,11 @@
 		sgCostsAtLastNumChange = 0;//holds the costs at the time of the last attendee count change
 
 	var $sgSetupScreen = $('#setup'),
-		$sgFeedbackScreen = $('#feedback'),
+		$sgCurrencyInput = $('#input-currency'),
+		$sgMeetingSince = $('#meeting-since');
+
+
+	const $sgFeedbackScreen = $('#feedback'),
 		$sgCurrDuration = $('#currDuration'),
 		$sgCurrEuros = $('#currEuros'),
 		$sgCurrCents = $('#currCents'),
@@ -149,6 +154,34 @@
 		$sgCurrAttendees.text(sgNumAttendees);
 	}
 
+	/**
+	* get the start's timestamp in msecs
+	* @returns {undefined}
+	*/
+	const getMeetingStartTimestamp = function() {
+		// check which time we need to use
+		const since = $sgMeetingSince.val() || '0',
+			strlen = since.length;
+		let msecsAgo = 0,
+			startTime = new Date(),
+			timestamp;
+
+		if (strlen > 2) {
+			// exact time
+			const minutes = parseInt(since.substr(-2,2), 10),
+				hours = parseInt(since.substr(0, strlen-2), 10);
+
+			startTime.setHours(hours, minutes, 0, 0);
+			timestamp = startTime.getTime();
+		} else {
+			// minutes ago
+			timestamp = startTime.getTime() - 60 * 1000 * since;
+		}
+
+		return timestamp;
+	};
+	
+
 
 	/**
 	* start a meeting
@@ -165,13 +198,15 @@
 			numAttendees = parseInt($('input[name="numAttendees"]:checked').val(),10);
 		}
 		updateNumAttendees(numAttendees);
-		console.log(numAttendees);
 
 		sgAvgRate = parseInt($('#hourlyRate').val(),10);
 		updateRatePerSecond();
 
-		sgMeetingStartMsecs = Math.floor(new Date().getTime());
+		sgMeetingStartMsecs = getMeetingStartTimestamp();
 		sgLastNumChangeMsecs = sgMeetingStartMsecs;
+
+		sgCurrency = $sgCurrencyInput.val();
+		document.getElementById('counter__currency').textContent = sgCurrency;
 
 		sgCostsAtLastNumChange = 0;
 		updateCosts();
@@ -292,6 +327,13 @@
 		$('.attendees-list').find('input[type="radio"]').on('click', resetAttendeesInput);
 		$('#more-attendees-input').on('keyup', handleAttendeesInput);
 		$('#less-attendees, #more-attendees').on('click', changeAttendeeCountHandler);
+		$('input').on('focus', function() {
+			var fld = this;
+			setTimeout(() => {
+				fld.selectionStart = 0;
+				fld.selectionEnd = fld.value.length;
+			}, 200);
+		});
 	};
 
 	jQuery(document).ready(function() {
